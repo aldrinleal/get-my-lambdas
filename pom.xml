@@ -154,7 +154,7 @@
                                     <goal>assemble</goal>
                                 </goals>
                                 <configuration>
-                                    <extraJvmArguments>-Xmn 512m -Xmx1024m -server -d64
+                                    <extraJvmArguments>-Xmn512m -Xmx7168M -server -d64
                                         -Djava.net.preferIPv4Stack=true
                                         -XX:+UseNUMA -XX:+UseCompressedOops -XX:+UseParNewGC
                                         -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled
