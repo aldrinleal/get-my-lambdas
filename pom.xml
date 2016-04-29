@@ -27,8 +27,7 @@
         <beanstalk.environmentRef>${environmentName}.elasticbeanstalk.com</beanstalk.environmentRef>
 
         <beanstalk.useStagingDirectory>true</beanstalk.useStagingDirectory>
-        <beanstalk.solutionStack>64bit Amazon Linux 201* v* running Docker *
-        </beanstalk.solutionStack>
+        <beanstalk.solutionStack>64bit Amazon Linux 201* v* running Docker *</beanstalk.solutionStack>
         <beanstalk.applicationHealthCheckURL>/health/check</beanstalk.applicationHealthCheckURL>
 
         <!--
@@ -39,7 +38,6 @@
 
         <beanstalk.keyName>aldrin@leal.eng.br</beanstalk.keyName>
         <beanstalk.iamInstanceProfile>aws-elasticbeanstalk-ec2-role</beanstalk.iamInstanceProfile>
-        <beanstalk.availabilityZones>us-east-1d</beanstalk.availabilityZones>
     </properties>
 
     <dependencies>
@@ -138,8 +136,9 @@
                         <artifactId>cloudformation-maven-plugin</artifactId>
                         <configuration>
                             <outputMapping>
-                                <VPCId>beanstalk.vpcId</VPCId>
+                                <VpcId>beanstalk.vpcId</VpcId>
                                 <SubnetId>beanstalk.vpcSubnets</SubnetId>
+                                <SecurityGroupId>beanstalk.securityGroups</SecurityGroupId>
                             </outputMapping>
                         </configuration>
                     </plugin>
@@ -209,11 +208,12 @@
                                 <phase>deploy</phase>
                                 <goals>
                                     <goal>codecommit-fast-deploy</goal>
+                                    <goal>put-environment</goal>
                                 </goals>
                             </execution>
                         </executions>
                         <configuration>
-                            <sourceDirectory>${project.basedir}/tmp-git-deployment-staging</sourceDirectory>
+				<sourceDirectory>${project.basedir}/target/appassembler</sourceDirectory>
                         </configuration>
                     </plugin>
                 </plugins>
